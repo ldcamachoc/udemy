@@ -1,0 +1,12 @@
+**/.DS_Store
+**/terraform
+**/.idea
+**/node_modules
+**/terraform.tfstate
+**/target
+**/.metadata
+**/.settings
+**/.classpath
+**/.project
+**/data
+**/.mvn
