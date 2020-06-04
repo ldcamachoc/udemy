@@ -1,0 +1,61 @@
+
+
+resource "aws_security_group" "port_22_ingress_globally_accessible" {
+  name = "port_22_ingress_globally_accessible"
+
+  ingress {
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = [
+      "0.0.0.0/0"]
+    // global access! Don't do this for real.
+  }
+}
+
+/*resource "aws_key_pair" "test_keypair" {
+    key_name = "test_keypair"
+    public_key = file("login-key.pub")
+}*/
+
+resource "tls_private_key" "privateKey" {
+  algorithm = "RSA"
+  rsa_bits  = 2048
+}
+
+resource "aws_key_pair" "loginkey" {
+
+  key_name = "login-key"
+  public_key = tls_private_key.privateKey.public_key_openssh
+
+
+}
+
+resource "aws_instance" "myec2" {
+  ami = "ami-0323c3dd2da7fb37d"
+  instance_type = "t2.micro"
+  key_name = "login-key"
+  security_groups = [aws_security_group.port_22_ingress_globally_accessible.name]
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo amazon-linux-extras install -y nginx1.12",
+      "sudo systemctl start nginx"
+    ]
+
+    connection {
+     type = "ssh"
+    user = "ec2-user"
+    private_key = "${file("login-key.pem")}"
+    timeout = "2m"
+    agent = false
+      host = self.public_ip
+
+    }
+  }
+}
+
+
+
+
+
