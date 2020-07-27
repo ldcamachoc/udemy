@@ -1,0 +1,26 @@
+Error creating Resource Group "web-resource-group": resources.GroupsClient
+#CreateOrUpdate: Failure responding to request: StatusCode=403 -- 
+Original Error: autorest/azure: 
+Service returned an error. Status=403 Code="RequestDisallowedByPolicy" 
+Message="Resource 'web-resource-group' was disallowed by policy. Policy identifiers: 
+'[{"policyAssignment":{"name":"[Cloud Services]: NonProd",
+"id":"/providers/Microsoft.Management/managementGroups/e71c85a5-6070-42d9-a34d-eaed5d4597f0/providers/Microsoft.Authorization/policyAssignments/aabac94f3ec6f60b425335fa"},
+"policyDefinition":{"name":"[Cloud Services]: Must have required tags on Resource Groups",
+"id":"/providers/Microsoft.Management/managementgroups/8331e14a-9134-4288-bf5a-5e2c8412f074/providers/Microsoft.Authorization/policyDefinitions/7b45fab5-e101-4e9c-9a04-a0838cc0f013"},
+"policySetDefinition":{"name":"[Cloud Services]: NonProd","id":
+"/providers/Microsoft.Management/managementgroups/8331e14a-9134-4288-bf5a-5e2c8412f074/providers/Microsoft.Authorization/policySetDefinitions/923f39ea-2045-4f2c-8ce6-d201063152d4"}}]'.
+" Target="web-resource-group" AdditionalInfo=[{"info":{"evaluationDetails":{"evaluatedExpressions":
+   [{"expression":"type","expressionKind":"Field","expressionValue":"Microsoft.Resources/subscriptions/resourcegroups",
+   "operator":"Equals","path":"type","result":"True","targetValue":"Microsoft.Resources/subscriptions/resourceGroups"},
+   {"expression":"tags.application-name","expressionKind":"Field","operator":"Exists","path":"tags.application-name",
+   "result":"True","targetValue":"False"},{"expression":"[concat(subscription().id,'/providers/',field('type'),'/',field('name'))]",
+   "expressionKind":"Value","expressionValue":"/subscriptions/0aabcf89-410e-427a-9d91-4f84deceb58f/providers/Microsoft.Resources/subscriptions/resourcegroups/web-resource-group",
+   "operator":"NotIn","result":"True","targetValue":[]}]},
+   "policyAssignmentDisplayName": "[Cloud Services]: NonProd","policyAssignmentId":"/providers/Microsoft.Management/managementGroups/e71c85a5-6070-42d9-a34d-eaed5d4597f0/providers/Microsoft.Authorization/policyAssignments/aabac94f3ec6f60b425335fa",
+   "policyAssignmentName":"aabac94f3ec6f60b425335fa",
+   "policyAssignmentScope":"/providers/Microsoft.Management/managementGroups/e71c85a5-6070-42d9-a34d-eaed5d4597f0",
+   "policyDefinitionDisplayName":"[Cloud Services]: Must have required tags on Resource Groups",
+   "policyDefinitionEffect":"Deny","policyDefinitionId":"/providers/Microsoft.Management/managementgroups/8331e14a-9134-4288-bf5a-5e2c8412f074/providers/Microsoft.Authorization/policyDefinitions/7b45fab5-e101-4e9c-9a04-a0838cc0f013",
+   "policyDefinitionName":"7b45fab5-e101-4e9c-9a04-a0838cc0f013","policyDefinitionReferenceId":"4162924744314900466",
+   "policySetDefinitionDisplayName":"[Cloud Services]: NonProd","policySetDefinitionId":"/providers/Microsoft.Management/managementgroups/8331e14a-9134-4288-bf5a-5e2c8412f074/providers/Microsoft.Authorization/policySetDefinitions/923f39ea-2045-4f2c-8ce6-d201063152d4",
+   "policySetDefinitionName":"923f39ea-2045-4f2c-8ce6-d201063152d4"},"type":"PolicyViolation"}]
